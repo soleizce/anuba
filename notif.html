@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Notifications | Kleiosyne's Scroll </title>
+</head>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="notif.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<style>
+  @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap);
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  min-height: 100vh;
+  position: relative;
+}
+a {
+  text-decoration: none;
+}
+.logo-title{
+	font-size: 25px;
+    font-weight: bold;
+    color: #9e0000;
+}
+.section-50 {
+  padding: 50px 0;
+}
+.m-b-50 {
+  margin-bottom: 50px;
+}
+.dark-link {
+  color: #333;
+  text-decoration:none!important;
+}
+.heading-line {
+  position: relative;
+  padding-bottom: 5px;
+}
+.heading-line:after {
+  content: "";
+  height: 4px;
+  width: 75px;
+  background-color: #237d41;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.notification-ui_dd-content {
+  margin-bottom: 30px;
+}
+.notification-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 20px;
+  margin-bottom: 7px;
+  background: #d9b9e9;
+  -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+.notification-list--unread {
+  border-left: 2px solid #d01b03;
+}
+.notification-list--read {
+  border-left: 2px solid #000000;
+}
+.notification-list .notification-list_content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.notification-list .notification-list_content .notification-list_img img {
+  height: 48px;
+  width: 48px;
+  border-radius: 50px;
+  margin-right: 20px;
+}
+.notification-list .notification-list_content .notification-list_detail p {
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+.notification-list .notification-list_feature-img img {
+  height: 90px;
+  width: 90px;
+  border-radius: 5px;
+  margin-left: 20px;
+}
+.wrapper {
+    width: 100%;
+    max-width: 31.25rem;
+    margin: 6rem auto;
+  }
+  
+  .label {
+    font-size: .625rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: +1.3px;
+    margin-bottom: 1rem;
+  }
+  
+  .searchBar {
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: auto;
+    position: absolute;
+    left: 185px;
+  }
+  
+  #searchQueryInput {
+    width: 100%;
+    height: 2.8rem;
+    background: #aaf5bf;
+    outline: none;
+    border: none;
+    border-radius: 1.625rem;
+    padding: 0 3.5rem 0 1.5rem;
+    font-size: 1rem;
+
+  }
+  
+  #searchQuerySubmit {
+    width: 3.5rem;
+    height: 2.8rem;
+    margin-left: -3.5rem;
+    background: none;
+    border: none;
+    outline: none;
+  }
+  
+  #searchQuerySubmit:hover {
+    cursor: pointer;
+  }
+  img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+  }
+  
+  img:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+  }
+.iconbar{
+    position: absolute;
+    right: -550px;
+    width: 120px;
+    font-size:33px;
+    margin-right: 5px;
+    color: #000000;
+}
+.iconbar a{
+  color: #000000;
+}
+.aboutus{
+    position:relative;
+    float:right;
+    margin-right: 5px;
+    right: -700px;
+    margin-top: 9px;
+    background-color: #a3f8ae;
+    border-radius: 40px;
+    size: 90px;
+    width: 215px;
+    height: 30px;
+    text-align:center;
+}
+.aboutus a{
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    cursor: pointer;
+    margin: 5px;
+}
+.setting{ 
+    position: absolute;
+    right: -900px;
+    width: 190px;
+    font-size:33px;
+    margin-right: 5px;
+    color: #000000;
+}
+.setting a{
+  color: #000000;
+}
+.header {
+  padding: 6px;
+  width: 1500px;
+  text-align: center;
+  background: transparent;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  padding: 0 16px;
+  size: 20px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+  
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: rgb(0, 0, 0);
+  background-color: #f6f8f6;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #a3f1bd;
+}
+
+.searchInput input{
+  height: 55px;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  padding: 0 60px 0 20px;
+  font-size: 18px;
+  box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
+  background: #a3f8ae;
+}
+
+.searchInput.active input{
+  border-radius: 5px 5px 0 0;
+}
+
+.searchInput .resultBox{
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.searchInput.active .resultBox{
+  padding: 10px 8px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.resultBox li{
+  list-style: none;
+  padding: 8px 12px;
+  display: none;
+  width: 100%;
+  cursor: default;
+  border-radius: 3px;
+}
+
+.searchInput.active .resultBox li{
+  display: block;
+}
+.resultBox li:hover{
+  background: #efefef;
+}
+
+.searchInput .icon{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  height: 55px;
+  width: 55px;
+  text-align: center;
+  line-height: 55px;
+  font-size: 20px;
+  color: #000000;
+  cursor: pointer;
+}
+* {
+  box-sizing: border-box;
+}
+
+/* Style inputs */
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #000a01;
+}
+
+/* Style the container/contact section */
+.container {
+  border-radius: 5px;
+  background-color: hsl(0, 0%, 100%);
+  padding: 10px;
+}
+
+/* Create two columns that float next to eachother */
+.column {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+  padding: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+.sidenav {
+  height: 100%;
+  width: 240px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #89d18d;
+  overflow-x: hidden;
+  padding-top: 20px;
+  border-radius: 10px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  right: 90px;
+  display: block;
+
+}
+
+.sidenav a:hover {
+  color: #ffffff;
+}
+
+
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.heading{
+  text-transform: uppercase;
+  font-family: 3.5rem;
+  letter-spacing: 3px;
+  margin-right: -3px;
+  margin-bottom: 5rem;
+  text-align: center;
+  color: #333;
+  position: relative;
+}
+
+.heading::after{
+  content: "";
+  width: 10rem;
+  height: .8rem;
+  background-color: #45e19f;
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2rem;
+}
+.container a i{
+  font-size: 30px;
+  text-align: center;
+  color: #000000;
+  width: 90px;
+  flex: auto;
+}
+blockquote {
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  margin: 0.5em;
+  padding: 0.5em 2em 0.5em 3em;
+  font-size: 20px ;
+
+}
+/* Thanks: http://callmenick.com/post/styling-blockquotes-with-css-pseudo-classes */
+blockquote:before {
+  font-family: Georgia, serif;
+  position: absolute;
+  font-size: 6em;
+  line-height: 1;
+  top: 0;
+  left: 0;
+  content: "\201C";
+}
+blockquote:after {
+  font-family: Georgia, serif;
+  position: absolute;
+ /* display: block; don't use this, it raised the quote too high from the bottom - defeated line-height? */
+  float:right;
+  font-size:6em;
+  line-height: 1;
+  right:0;
+  bottom:-0.5em;
+  content: "\201D";
+}
+blockquote footer {
+  padding: 0 2em 0 0;
+  text-align:right;
+}
+blockquote cite:before {
+  content: "\2013";
+}
+.container p{
+  font-size: 20px;
+}
+.nav__logo {
+  width: 180px;
+  object-fit: contain;
+  margin-left: 25px;
+}
+.sidenav{
+  background:linear-gradient(#fff, #72c06d);
+  height: 150vh;
+}
+</style>
+<body>
+<section class="section-50">
+    <div class="container">
+      <h3 class="m-b-50 heading-line">BLOGS <i class="fa fa-bell text-muted"></i></h3>
+      <div class="notification-ui_dd-content">
+        <div class="notification-list notification-list--unread">
+          <div class="notification-list_content">
+        
+            <div class="notification-list_detail">
+              <p><b>THE TIMES</b></p>
+              <p class="text-muted">"Sunrise on the Reaping" out on fall of 2025!</p>
+              <p class="text-muted"><small>10 mins ago</small></p>
+            </div>
+          </div>
+          <div class="notification-list_feature-img"> <img src="images/times.jpg" alt="Feature image"> </div>
+        </div>
+        <div class="notification-list notification-list--unread">
+          <div class="notification-list_content">
+           
+            <div class="notification-list_detail">
+              <p><b>THE TIMES </b></p>
+              <p class="text-muted"> Who will play Haymitch Abernathy for "Sunrise on the Reaping"? Question grows amidst the announcement. </p>
+              <p class="text-muted"><small>19 mins ago</small></p>
+            </div>
+          </div>
+          <div class="notification-list_feature-img"> <img src="images/times.jpg" alt="Feature image"> </div>
+        </div>
+        <div class="notification-list notification-list--read">
+          <div class="notification-list_content">
+           
+            <div class="notification-list_detail">
+              <p><b>NEWS INSIDER</b></p>
+              <p class="text-muted">TEACH DELE RESPONSIVE WEBSITE NAMIN HUHU</p>
+              <p class="text-muted"><small>45 mins ago</small></p>
+            </div>
+          </div>
+          <div class="notification-list_feature-img"> <img src="images/ins.jpg" alt="Feature image"> </div>
+        </div>
+        <div class="notification-list notification-list--read">
+          <div class="notification-list_content">
+          
+            <div class="notification-list_detail">
+              <p><b>NEWS INSIDER</b></p>
+              <p class="text-muted">Ayaw niya maging responsive teach... ndi keri ng media query huhu </p>
+              <p class="text-muted"><small>3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="notification-list_feature-img"> <img src="images/ins.jpg" alt="Feature image"> </div>
+        </div>
+        <div class="notification-list notification-list--unread">
+          <div class="notification-list_content">
+          
+            <div class="notification-list_detail">
+              <p><b>NEWS INSIDER</b></p>
+              <p class="text-muted"> Was Lucy Gray alive all this time?</p>
+              <p class="text-muted"><small>9 mins ago</small></p>
+            </div>
+          </div>
+          <div class="notification-list_feature-img"> <img src="images/ins.jpg" alt="Feature image"> </div>
+        </div>
+        <div class="notification-list notification-list--read">
+          <div class="notification-list_content">
+           
+            <div class="notification-list_detail">
+              <p><b>NEWS INSIDER</b></p>
+             <a href="forum.html"> <p class="text-muted"> <b> Collins: </b>"I only write when I wanted to say things regarding the conflict on our world. " </p></a>
+              <p class="text-muted"><small>34 mins ago</small></p>
+            </div>
+          </div>
+          <div class="notification-list_feature-img"><a href="forum.html"><img src="images/ins.jpg" alt="Feature image"></a> 
+          </div>
+        </div>
+      </div>
+      <div class="text-center"> <a href="#" class="btn btn-success">Load more activity</a> </div>
+    </div>
+  </section>
+  
